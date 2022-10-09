@@ -58,7 +58,7 @@ class Script(scripts.Script):
                         checkbox_choices = []
                         with open(txt_file_dir, encoding="utf8") as f:
                             for line in f:
-                                if line[0] == '#': # ignore line if it has '#' as the first character
+                                if line[0] == '#':  # ignore line if it has '#' as the first character
                                     pass
                                 else:
                                     checkbox_choices.append(line.rstrip())
@@ -87,10 +87,16 @@ class Script(scripts.Script):
                 self.tags = self.tags + ', ' + tag_changes[1]
 
         if tag_changes[0] < 0:
-            current_tags = self.tags.split(',')
-            strings_with_substring = [string for string in current_tags if tag_changes[1] in string][0]
-            current_tags = list(filter(lambda val: val != strings_with_substring, current_tags))
-            self.tags = ",".join(current_tags)
+            start_index_naked = self.tags.find(tag_changes[1])
+            length_newtag = len(tag_changes[1])
+            if self.tags[start_index_naked - 1] == '(':  # checks if this tag has an attention bracket
+                indices_remove = [start_index_naked - 3, start_index_naked + length_newtag + 5]
+            elif self.tags[start_index_naked - 1] == ' ':  # makes sure it doesn't have an attention bracket
+                indices_remove = [start_index_naked - 2, start_index_naked + length_newtag]
+            else:
+                return
+            self.tags = self.tags[:indices_remove[0]] + self.tags[
+                                                        indices_remove[1] + 1:]  # removes tag based on string indexing
 
         if tag_changes[0] == 0:
             pass
@@ -108,7 +114,8 @@ class Script(scripts.Script):
     def new_tag_checker(self, new_tags,
                         label):  # checks if the change in the tags is a tag added or removed, and announces it
         old_tags = self.added_tags[label]
-        changed_tag = list(set(old_tags).symmetric_difference(set(new_tags)))[0]  # just gets what changed, need to check if added or removed
+        changed_tag = list(set(old_tags).symmetric_difference(set(new_tags)))[
+            0]  # just gets what changed, need to check if added or removed
         if len(old_tags) > len(new_tags):
             # something got removed
             result = [-1, changed_tag]
