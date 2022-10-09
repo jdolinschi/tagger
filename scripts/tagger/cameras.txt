@@ -1,0 +1,8 @@
+70mm
+50mm
+portra 800
+portra 160
+vivid
+depth of field
+film camera
+bokeh

@@ -1,0 +1,82 @@
+abstract
+action hero
+angular
+animals
+anime
+architecture
+art deco
+art nouveau
+bauhaus
+bdsm
+black and white
+cartoon
+character
+children's illustration
+cityscape
+clean
+cloudscape
+collage
+colorful
+comic
+comics
+cubism
+detailed
+digital
+divisionism
+expressionism
+fantasy
+fashion
+figurativism
+flat colors
+fruit
+graffiti
+grainy
+graphic design
+history
+horror
+impressionism
+installation
+landscape
+luminism
+macro
+magical
+manga
+matte
+melanin
+messy
+monochromatic
+nature
+nudity
+oil painting
+painting
+photography
+photoshop
+photorealism
+pointillism
+pop art
+portrait
+primitivism
+psychedelic
+realism
+realistic
+renaissance
+romanticism
+scale
+scene
+sci-fi
+sculpture
+seascape
+space
+stained glass
+still life
+street art
+streetscape
+surrealism
+symbolism
+textile
+texture
+textured
+ukiyo-e
+vibrant
+watercolor
+whimsical
