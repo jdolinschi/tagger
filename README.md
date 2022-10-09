@@ -24,6 +24,11 @@ I will update these regularly as I come up with them or find them out there bein
 >sci-fi-artists.txt
 
 And so on. If you want to save a file but not have the tags inside added to the ui, move the file to the folder `unused_tags`. It will simply not be read.
+Added the ability to ignore tags within text files by adding a `#` to the start of the tag in the file.
+Example:
+`#90 mm`
+`# 90 mm`
+will both be ignored and not shown in the ui.
 
 ![what it looks like in the web ui](https://user-images.githubusercontent.com/25022792/194760728-52641034-bb48-476b-9f18-88e555c5662a.jpg)
 
