@@ -5,7 +5,7 @@ Script for AUTOMATIC1111/stable-diffusion-webui to provide a way to quickly add 
 The script will add the ability to add tags to a separate textbox. These will be added to the end of your prompt automatically. You can add the tags manually, or via checking any checkboxes that appear below. You can also check "Add with attention brackets" to add the terms with the AUTOMATIC1111's new attention brackets: (term:1.1), with 1.1 being the default and thus added with it. You can edit these manually. Check the [docks](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Features#attentionemphasis) for an explanation of this. You can type in anything into this textbox, and it's contents will be added to the end of your prompt when you click 'Generate'.
 
 ## Installation
-1. Clone or download the files in the `scripts` to the `scripts` folder from https://github.com/AUTOMATIC1111/stable-diffusion-webui
+1. Clone or download the files in the `scripts` folder to the `scripts` folder from https://github.com/AUTOMATIC1111/stable-diffusion-webui
 2. Select "tagger" in the "Scripts" dropdown in the webui.
 
 ## Customize
