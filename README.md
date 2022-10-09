@@ -25,5 +25,7 @@ I will update these regularly as I come up with them or find them out there bein
 
 And so on. If you want to save a file but not have the tags inside added to the ui, move the file to the folder `unused_tags`. It will simply not be read.
 
+![what it looks like in the web ui](https://user-images.githubusercontent.com/25022792/194760728-52641034-bb48-476b-9f18-88e555c5662a.jpg)
+
 ## Dependencies
 None!
