@@ -58,7 +58,10 @@ class Script(scripts.Script):
                         checkbox_choices = []
                         with open(txt_file_dir, encoding="utf8") as f:
                             for line in f:
-                                checkbox_choices.append(line.rstrip())
+                                if line[0] == '#': # ignore line if it has '#' as the first character
+                                    pass
+                                else:
+                                    checkbox_choices.append(line.rstrip())
                         self.all_tags[checkboxgroup_label] = checkbox_choices
                         self.added_tags[checkboxgroup_label] = []
                         self.group_chkbx = gr.CheckboxGroup(choices=checkbox_choices, type='value',
