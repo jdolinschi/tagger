@@ -36,3 +36,10 @@ I will update these regularly as I come up with them or find them out there bein
 
 ## Dependencies
 None!
+
+## Sources
+Some of the tags included in the files by default cake from:
+- https://docs.google.com/spreadsheets/d/1SRqJ7F_6yHVSOeCi3U82aA448TqEGrUlRrLLZ51abLg
+- https://moritz.pm/posts/parameters
+
+I also used the great script `wildcards` as a bit of coding help to figure out how to make this script work. Find it here: https://github.com/jtkelm2/stable-diffusion-webui-1/blob/master/scripts/wildcards.py
