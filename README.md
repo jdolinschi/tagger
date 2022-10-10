@@ -8,6 +8,15 @@ The script will add the ability to add tags to a separate textbox. These will be
 1. Clone or download the files in the `scripts` folder to the `scripts` folder from https://github.com/AUTOMATIC1111/stable-diffusion-webui
 2. Select "tagger" in the "Scripts" dropdown in the webui.
 
+
+## Features
+- Customizable tag files. Define your own favorite tags and get rid of ones you don't like.
+- You can add/remove tags with attention brackets (e.g. `(greg rutkowski:1.1)`) by checking the "Add with attention brackets" checkbox. Any tags now added will have them.
+- Exclude certain tags from showing up in the list by adding a `#` as the first character in the line.
+- Tags in the `favorites.txt` file show up at the top of the list always
+- Files in the `unused_tags` folder will not be added
+
+
 ## Customize
 I have added some text files with tags already. These are added in from the folder `/scripts/tagger/`, which contains the text files with the tags. You can organize your tags any way you want by creating a new text file and adding your custom tags in it or modifying the text files provided. Changes or new files will be loaded on a reload of the web ui. Each line will be a new tag. The tags are organized under the file name you use. Some I have included:
 
@@ -22,13 +31,6 @@ I have added some text files with tags already. These are added in from the fold
 I will update these regularly as I come up with them or find them out there being used. Might want to cut down on the artists list though if you'd like since there's a lot of them! Could organize it, for example, by type of artist:
 >fantasy-artists.txt
 >sci-fi-artists.txt
-
-And so on. If you want to save a file but not have the tags inside added to the ui, move the file to the folder `unused_tags`. It will simply not be read.
-Added the ability to ignore tags within text files by adding a `#` to the start of the tag in the file.
-Example:
-`#90 mm`
-`# 90 mm`
-will both be ignored and not shown in the ui.
 
 ![what it looks like in the web ui](https://user-images.githubusercontent.com/25022792/194760728-52641034-bb48-476b-9f18-88e555c5662a.jpg)
 
