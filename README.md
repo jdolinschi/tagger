@@ -27,6 +27,9 @@ I have added some text files with tags already. These are added in from the fold
 | lighting.txt | Terms relating to the lighting of the scene, e.g. harsh lighting, dramatic lighting, shadows, etc. |
 | styles.txt | Terms for the style of image, e.g. oil painting, anime, black and white, etc. |
 | websites.txt | Website names, e.g. artstation or pixiv. |
+| colors.txt | Descriptors involving colors, such as vibrancy |
+| environments.txt | Tags for environmental descriptions, such as scale |
+| 3d-renders.txt | Tags that involve 3d rendering looks, like volumetric fog or cgi |
 
 I will update these regularly as I come up with them or find them out there being used. Might want to cut down on the artists list though if you'd like since there's a lot of them! Could organize it, for example, by type of artist:
 >fantasy-artists.txt
