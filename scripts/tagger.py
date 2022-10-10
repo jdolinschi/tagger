@@ -50,6 +50,9 @@ class Script(scripts.Script):
         self.component_list = [self.txt_box, self.weighting_chkbx]
         if os.path.exists(folder_dir):  # now we pull out all the tags in the files
             txt_files_list = [f for f in listdir(folder_dir) if isfile(join(folder_dir, f))]
+            if 'favorites.txt' in txt_files_list:
+                index = txt_files_list.index('favorites.txt')
+                txt_files_list.insert(0, txt_files_list.pop(index))
             if len(txt_files_list) > 0:
                 for file in txt_files_list:
                     if file.split('.')[-1] == 'txt':
@@ -78,7 +81,7 @@ class Script(scripts.Script):
 
     def checks_changed(self, input_tag, label):  # receives new tags and checks if they should be added or removed
         tag_changes = self.new_tag_checker(input_tag, label)
-        if type(self.tags) == None:  # fixes bug where sometimes if you're going too fast and you remove the last tag, self.tags becomes of type none
+        if type(self.tags) is None:  # fixes bug where sometimes if you're going too fast and you remove the last tag, self.tags becomes of type none
             self.tags = ''
         if tag_changes[0] > 0:  # detected tag addition
             if self.attention_brackets_bool:
@@ -88,17 +91,20 @@ class Script(scripts.Script):
                 self.tags = self.tags + ', ' + tag_changes[1]
 
         if tag_changes[0] < 0:  # detected tag removal
-            start_search = 0 # where to begin searching for the tag, indexed string of self.tags
+            start_search = 0  # where to begin searching for the tag, indexed string of self.tags
             length_newtag = len(tag_changes[1])
             match_found = False
-            while (len(self.tags) - length_newtag) >= start_search: # search to the end of the string until tag is found that matches required criteria
+            while (
+                    len(self.tags) - length_newtag) >= start_search:  # search to the end of the string until tag is found that matches required criteria
                 start_index_naked = self.tags.find(tag_changes[1], start_search)
-                if start_index_naked >-1:  # catch issues with not finding the substring. If so, it skips everything and just returns the same thing again.
-                    if (self.tags[start_index_naked - 1] == '(') and (self.tags[start_index_naked + length_newtag] == ':'):  # checks if this tag has an attention bracket
+                if start_index_naked > -1:  # catch issues with not finding the substring. If so, it skips everything and just returns the same thing again.
+                    if (self.tags[start_index_naked - 1] == '(') and (self.tags[
+                                                                          start_index_naked + length_newtag] == ':'):  # checks if this tag has an attention bracket
                         indices_remove = [start_index_naked - 3, start_index_naked + length_newtag + 5]
                         match_found = True
                         break
-                    elif (self.tags[start_index_naked - 2:start_index_naked] == ', '):  # makes sure it doesn't have an attention bracket or finds a word within something else
+                    elif (self.tags[
+                          start_index_naked - 2:start_index_naked] == ', '):  # makes sure it doesn't have an attention bracket or finds a word within something else
                         indices_remove = [start_index_naked - 2, start_index_naked + length_newtag]
                         match_found = True
                         break
