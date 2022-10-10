@@ -78,26 +78,41 @@ class Script(scripts.Script):
 
     def checks_changed(self, input_tag, label):  # receives new tags and checks if they should be added or removed
         tag_changes = self.new_tag_checker(input_tag, label)
-
-        if tag_changes[0] > 0:
+        if type(self.tags) == None:  # fixes bug where sometimes if you're going too fast and you remove the last tag, self.tags becomes of type none
+            self.tags = ''
+        if tag_changes[0] > 0:  # detected tag addition
             if self.attention_brackets_bool:
                 self.tags = self.tags + ', ' + '(' + tag_changes[1] + ':1.1)'
 
             elif not self.attention_brackets_bool:
                 self.tags = self.tags + ', ' + tag_changes[1]
 
-        if tag_changes[0] < 0:
-            start_index_naked = self.tags.find(tag_changes[1])
+        if tag_changes[0] < 0:  # detected tag removal
+            start_search = 0 # where to begin searching for the tag, indexed string of self.tags
             length_newtag = len(tag_changes[1])
-            if self.tags[start_index_naked - 1] == '(':  # checks if this tag has an attention bracket
-                indices_remove = [start_index_naked - 3, start_index_naked + length_newtag + 5]
-            elif self.tags[start_index_naked - 1] == ' ':  # makes sure it doesn't have an attention bracket
-                indices_remove = [start_index_naked - 2, start_index_naked + length_newtag]
-            else:
-                return
-            self.tags = self.tags[:indices_remove[0]] + self.tags[
-                                                        indices_remove[1] + 1:]  # removes tag based on string indexing
+            match_found = False
+            while (len(self.tags) - length_newtag) >= start_search: # search to the end of the string until tag is found that matches required criteria
+                start_index_naked = self.tags.find(tag_changes[1], start_search)
+                if start_index_naked >-1:  # catch issues with not finding the substring. If so, it skips everything and just returns the same thing again.
+                    if (self.tags[start_index_naked - 1] == '(') and (self.tags[start_index_naked + length_newtag] == ':'):  # checks if this tag has an attention bracket
+                        indices_remove = [start_index_naked - 3, start_index_naked + length_newtag + 5]
+                        match_found = True
+                        break
+                    elif (self.tags[start_index_naked - 2:start_index_naked] == ', '):  # makes sure it doesn't have an attention bracket or finds a word within something else
+                        indices_remove = [start_index_naked - 2, start_index_naked + length_newtag]
+                        match_found = True
+                        break
+                    else:
+                        start_search += start_index_naked
 
+                elif start_index_naked == -1:
+                    break
+            if match_found:
+                self.tags = self.tags[:indices_remove[0]] + self.tags[
+                                                            indices_remove[1]:]  # removes tag based on string indexing
+                match_found = False
+            else:
+                return self.tags
         if tag_changes[0] == 0:
             pass
 
@@ -126,7 +141,6 @@ class Script(scripts.Script):
             # nothing is different
             result = [0, '']
         self.added_tags[label] = new_tags
-
         return result
 
     def run(self, p, *args):
